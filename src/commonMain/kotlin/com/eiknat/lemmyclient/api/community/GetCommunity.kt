@@ -1,12 +1,12 @@
 package com.eiknat.lemmyclient.api.community
 
-import com.eiknat.lemmyclient.api.GetOp
+import com.eiknat.lemmyclient.api.Op
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetCommunity")
-class GetCommunity(val data: Data): GetOp() {
+class GetCommunity(val data: Data): Op() {
 
     @Serializable
     data class Data(

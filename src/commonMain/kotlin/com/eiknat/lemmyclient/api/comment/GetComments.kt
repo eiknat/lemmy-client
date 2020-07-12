@@ -1,12 +1,12 @@
 package com.eiknat.lemmyclient.api.comment
 
-import com.eiknat.lemmyclient.api.GetOp
+import com.eiknat.lemmyclient.api.Op
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetComments")
-class GetComments(val data: Data): GetOp() {
+class GetComments(val data: Data): Op() {
 
     @Serializable
     data class Data(

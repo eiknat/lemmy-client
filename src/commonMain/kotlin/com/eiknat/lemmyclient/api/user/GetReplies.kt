@@ -1,12 +1,12 @@
 package com.eiknat.lemmyclient.api.user
 
-import com.eiknat.lemmyclient.api.GetOp
+import com.eiknat.lemmyclient.api.Op
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetReplies")
-class GetReplies(val data: Data): GetOp() {
+class GetReplies(val data: Data): Op() {
 
     @Serializable
     data class Data(

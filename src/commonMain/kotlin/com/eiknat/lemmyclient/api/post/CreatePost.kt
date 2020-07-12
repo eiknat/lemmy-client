@@ -1,10 +1,12 @@
 package com.eiknat.lemmyclient.api.post
 
+import com.eiknat.lemmyclient.api.Op
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class CreatePost(val data: Data) {
-    val op: String = "CreatePost"
+@SerialName("CreatePost")
+class CreatePost(val data: Data): Op() {
 
     @Serializable
     data class Data(

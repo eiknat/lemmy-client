@@ -1,10 +1,12 @@
 package com.eiknat.lemmyclient.api.user
 
+import com.eiknat.lemmyclient.api.Op
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Register(val data: Data) {
-    val op: String = "Register"
+@SerialName("Register")
+class Register(val data: Data): Op() {
 
     @Serializable
     data class Data(

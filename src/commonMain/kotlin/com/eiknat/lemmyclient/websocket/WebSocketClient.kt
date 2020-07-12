@@ -1,11 +1,10 @@
 package com.eiknat.lemmyclient.websocket
 
-import com.eiknat.lemmyclient.api.GetOp
-import com.eiknat.lemmyclient.api.getOpSerializers
+import com.eiknat.lemmyclient.api.Op
+import com.eiknat.lemmyclient.api.opSerializers
 import io.ktor.client.HttpClient
 import io.ktor.client.features.websocket.WebSockets
 import io.ktor.client.features.websocket.ws
-import io.ktor.http.HttpMethod
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readBytes
 import io.ktor.http.cio.websocket.readText
@@ -24,13 +23,12 @@ object WebSocketClient {
 
     lateinit var host: String
 
-    internal suspend fun get(request: GetOp) = client.ws(
-        method = HttpMethod.Get,
+    internal suspend fun send(request: Op) = client.ws(
         host = host,
         path = WEBSOCKET_PATH
     ) {
         val json = Json(
-            context = getOpSerializers(),
+            context = opSerializers(),
             configuration = JsonConfiguration.Stable.copy(classDiscriminator = "op")
         ).stringify(request)
         println(json)

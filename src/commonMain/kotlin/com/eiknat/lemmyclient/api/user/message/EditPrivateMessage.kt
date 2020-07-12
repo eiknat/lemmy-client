@@ -1,10 +1,12 @@
 package com.eiknat.lemmyclient.api.user.message
 
+import com.eiknat.lemmyclient.api.Op
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class EditPrivateMessage(val data: Data) {
-    val op: String = "EditPrivateMessage"
+@SerialName("EditPrivateMessage")
+class EditPrivateMessage(val data: Data): Op() {
 
     @Serializable
     data class Data(

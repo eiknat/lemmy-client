@@ -1,10 +1,12 @@
 package com.eiknat.lemmyclient.api.user
 
+import com.eiknat.lemmyclient.api.Op
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class EditUserMention(val data: Data) {
-    val op: String = "EditUserMention"
+@SerialName("EditUserMention")
+class EditUserMention(val data: Data): Op() {
 
     @Serializable
     data class Data(

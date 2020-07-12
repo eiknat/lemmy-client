@@ -1,10 +1,12 @@
 package com.eiknat.lemmyclient.api.community
 
+import com.eiknat.lemmyclient.api.Op
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class BanFromCommunity(val data: Data) {
-    val op: String = "BanFromCommunity"
+@SerialName("BanFromCommunity")
+class BanFromCommunity(val data: Data): Op() {
 
     @Serializable
     data class Data(
