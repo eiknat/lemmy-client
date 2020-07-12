@@ -1,11 +1,12 @@
 package com.eiknat.lemmyclient.api.user
 
-import com.eiknat.lemmyclient.api.GetRequest
+import com.eiknat.lemmyclient.api.GetOp
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class GetUserMentions(val data: Data): GetRequest {
-    val op: String = "GetUserMentions"
+@SerialName("GetUserMentions")
+class GetUserMentions(val data: Data): GetOp() {
 
     @Serializable
     data class Data(

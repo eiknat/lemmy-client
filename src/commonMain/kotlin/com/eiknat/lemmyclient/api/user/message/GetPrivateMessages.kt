@@ -1,11 +1,12 @@
 package com.eiknat.lemmyclient.api.user.message
 
-import com.eiknat.lemmyclient.api.GetRequest
+import com.eiknat.lemmyclient.api.GetOp
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class GetPrivateMessages(val data: Data): GetRequest {
-    val op: String = "GetPrivateMessages"
+@SerialName("GetPrivateMessages")
+class GetPrivateMessages(val data: Data): GetOp() {
 
     @Serializable
     data class Data(

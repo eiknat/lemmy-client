@@ -1,12 +1,12 @@
 package com.eiknat.lemmyclient.api.post
 
-import com.eiknat.lemmyclient.api.GetRequest
+import com.eiknat.lemmyclient.api.GetOp
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class GetPost(val data: Data) { // should extend GetRequest, need to write serializer for it
-
-    val op: String = "GetPost"
+@SerialName("GetPost")
+class GetPost(val data: Data): GetOp() {
 
     @Serializable
     data class Data(
