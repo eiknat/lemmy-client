@@ -1,12 +1,14 @@
 package com.eiknat.lemmyclient.api.comment
 
-import com.eiknat.lemmyclient.api.Op
+import com.eiknat.lemmyclient.api.RequestOp
+import com.eiknat.lemmyclient.api.ResponseOp
+import com.eiknat.lemmyclient.models.Comment
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("CreateComment")
-class CreateComment(val data: Data): Op() {
+class CreateCommentRequest(val data: Data): RequestOp() {
 
     @Serializable
     data class Data(
@@ -18,3 +20,18 @@ class CreateComment(val data: Data): Op() {
         val auth: String?
     )
 }
+
+@Serializable
+@SerialName("CreateComment")
+class CreateCommentResponse(val data: Data): ResponseOp() {
+
+    @Serializable
+    data class Data(
+        val comment: Comment,
+        @SerialName("recipient_ids")
+        val recipientIds: Array<Int?>?
+    )
+}
+
+
+
