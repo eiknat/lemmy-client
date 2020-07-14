@@ -25,10 +25,7 @@ class BanUserResponse(val data: Data): ResponseOp() {
 
     @Serializable
     data class Data(
-        val user_id: Int,
-        val ban: Boolean,
-        val reason: String,
-        val expires: Int, // date
-        val auth: String
+        val user: String, // UserView
+        val banned: Boolean
     )
 }

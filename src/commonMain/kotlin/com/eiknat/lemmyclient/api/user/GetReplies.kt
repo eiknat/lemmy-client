@@ -25,10 +25,6 @@ class GetRepliesResponse(val data: Data): ResponseOp() {
 
     @Serializable
     data class Data(
-        val sort: String,
-        val page: Int?,
-        val limit: Int?,
-        val unread_only: Boolean,
-        val auth: String
+        val replies: String // ReplyView
     )
 }

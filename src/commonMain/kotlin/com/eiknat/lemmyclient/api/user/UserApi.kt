@@ -1,13 +1,10 @@
 package com.eiknat.lemmyclient.api.user
 
-import com.eiknat.lemmyclient.api.RequestOp
-import com.eiknat.lemmyclient.api.ResponseOp
-import kotlinx.coroutines.Deferred
+import com.eiknat.lemmyclient.APIResult
 
-expect object UserApi {
+expect object UserAPI {
 
-    suspend fun performRequestAsync(op: RequestOp, handler: (String?) -> ResponseOp): Deferred<Unit>
+    suspend fun sendUserJoin(request: UserJoinRequest): APIResult<UserJoinResponse>
 
-    suspend fun sendUserRequest(request: RegisterRequest)
 }
 

@@ -19,6 +19,7 @@ class PasswordResetRequest(val data: Data): RequestOp() {
 @SerialName("PasswordReset")
 class PasswordResetResponse(val data: Data): ResponseOp() {
 
+    // this is actually empty, so there's nothing to deserialize
     @Serializable
     data class Data(
         val email: String

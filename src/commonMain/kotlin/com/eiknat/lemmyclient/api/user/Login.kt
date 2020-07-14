@@ -22,7 +22,6 @@ class LoginResponse(val data: Data): ResponseOp() {
 
     @Serializable
     data class Data(
-        val username_or_email: String,
-        val password: String
+        val jwt: String
     )
 }

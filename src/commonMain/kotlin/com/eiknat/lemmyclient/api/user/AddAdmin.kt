@@ -21,11 +21,8 @@ class AddAdminRequest(val data: Data): RequestOp() {
 @SerialName("AddAdmin")
 class AddAdminResponse(val data: Data): ResponseOp() {
 
-    // TODO update for response data
     @Serializable
     data class Data(
-        val user_id: Int,
-        val added: Boolean,
-        val auth: String
+        val admins: String // UserView
     )
 }

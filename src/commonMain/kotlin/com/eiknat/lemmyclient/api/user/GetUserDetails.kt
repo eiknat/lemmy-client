@@ -28,13 +28,11 @@ class GetUserDetailsResponse(val data: Data): ResponseOp() {
 
     @Serializable
     data class Data(
-        val user_id: Int?,
-        val username: String?,
-        val sort: String,
-        val page: Int?,
-        val limit: Int?,
-        val community_id: Int?,
-        val saved_only: Boolean,
-        val auth: String
+        val user: String, // UserView
+        val follows: String, // CommunityFollowerView
+        val moderates: String, // CommunityModeratorView
+        val comments: String, // CommentView
+        val posts: String, // PostView
+        val admins: String // UserView
     )
 }
