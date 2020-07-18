@@ -52,7 +52,7 @@ fun responseOpSerializers() = SerializersModule {
         MarkAllAsReadResponse::class with MarkAllAsReadResponse.serializer()
         PasswordChangeResponse::class with PasswordChangeResponse.serializer()
         PasswordResetResponse::class with PasswordResetResponse.serializer()
-        RegisterResponse::class with RegisterResponse.serializer()
+        RegisterRes::class with RegisterRes.serializer()
         SaveUserSettingsResponse::class with SaveUserSettingsResponse.serializer()
         UserJoinResponse::class with UserJoinResponse.serializer()
     }

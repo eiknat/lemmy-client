@@ -20,6 +20,6 @@ class LemmyAPI(host: String) {
 
     // most of this won't stick around, pretty much just for easy testing
     suspend fun sendRequest(request: UserJoinRequest) = coroutineScope {
-        launch { UserAPI.sendUserJoin(request) }
+//        launch { UserAPI.sendUserJoin(request) }
     }
 }

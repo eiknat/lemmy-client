@@ -20,8 +20,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.stringify
 
-@KtorExperimentalAPI
-@ImplicitReflectionSerializer
+
 object WebSocketClient {
     private const val WEBSOCKET_PATH = "/api/v1/ws"
     private val client = HttpClient() { install(WebSockets) }
@@ -32,6 +31,7 @@ object WebSocketClient {
     internal suspend fun send(request: RequestOp, channel: Channel<APIResult<ResponseOp>>) {
         client.ws(
             host = host,
+            port = 8536,
             path = WEBSOCKET_PATH
         ) {
             val json = Json(

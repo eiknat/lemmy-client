@@ -52,7 +52,7 @@ fun requestOpSerializers() = SerializersModule {
         MarkAllAsReadRequest::class with MarkAllAsReadRequest.serializer()
         PasswordChangeRequest::class with PasswordChangeRequest.serializer()
         PasswordResetRequest::class with PasswordResetRequest.serializer()
-        RegisterRequest::class with RegisterRequest.serializer()
+        RegisterReq::class with RegisterReq.serializer()
         SaveUserSettingsRequest::class with SaveUserSettingsRequest.serializer()
         UserJoinRequest::class with UserJoinRequest.serializer()
     }

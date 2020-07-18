@@ -2,9 +2,11 @@ package com.eiknat.lemmyclient.api.user
 
 import com.eiknat.lemmyclient.APIResult
 
-expect object UserAPI {
+import com.eiknat.lemmyclient.apipublic.user.RegisterRequest
+import com.eiknat.lemmyclient.apipublic.user.RegisterResponse
 
-    suspend fun sendUserJoin(request: UserJoinRequest): APIResult<UserJoinResponse>
-
+object UserAPI {
+    suspend fun register(request: RegisterRequest): APIResult<RegisterResponse> {
+        return Register.send(request)
+    }
 }
-

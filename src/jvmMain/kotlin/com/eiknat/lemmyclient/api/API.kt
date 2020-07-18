@@ -9,13 +9,18 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consume
 import kotlinx.serialization.ImplicitReflectionSerializer
 
-@KtorExperimentalAPI
-@ExperimentalCoroutinesApi
-@ImplicitReflectionSerializer
-actual abstract class API {
+actual open class API {
 
     private val job = SupervisorJob()
     private val scope = CoroutineScope(Dispatchers.IO + job)
+
+    actual suspend fun <T> performRequest(op: RequestOp): APIResult<T> {
+        return withContext(scope.coroutineContext) {
+            // TODO eh figure out something better here.
+            WebSocketChannel(op, this).consume { this.receive() }
+        } as APIResult<T>
+    }
+
 
     actual suspend fun performRequestAsync(op: RequestOp): APIResult<ResponseOp> {
         return withContext(scope.coroutineContext) {

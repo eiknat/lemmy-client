@@ -1,7 +1,7 @@
 package com.eiknat.lemmyclient
 
 sealed class APIResult<out T> {
-    class Success<out T>(val data: T): APIResult<T>()
+    class Success<out T>(val t: T): APIResult<T>()
     class Failure(val error: APIError): APIResult<Nothing>()
 }
 
