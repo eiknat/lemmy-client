@@ -1,6 +1,6 @@
 package com.eiknat.lemmyclient
 
-import com.eiknat.lemmyclient.api.user.UserJoinRequest
+import com.eiknat.lemmyclient.api.internal.user.UserJoinRequest
 import com.eiknat.lemmyclient.websocket.WebSocketClient
 import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.ExperimentalCoroutinesApi

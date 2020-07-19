@@ -1,8 +1,8 @@
 package com.eiknat.lemmyclient.websocket
 
 import com.eiknat.lemmyclient.APIResult
-import com.eiknat.lemmyclient.api.RequestOp
-import com.eiknat.lemmyclient.api.ResponseOp
+import com.eiknat.lemmyclient.api.internal.RequestOp
+import com.eiknat.lemmyclient.api.internal.ResponseOp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel

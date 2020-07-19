@@ -3,10 +3,10 @@ package com.eiknat.lemmyclient.websocket
 import com.eiknat.lemmyclient.APIError
 import com.eiknat.lemmyclient.APIResult
 import com.eiknat.lemmyclient.ErrorEnum
-import com.eiknat.lemmyclient.api.RequestOp
-import com.eiknat.lemmyclient.api.ResponseOp
-import com.eiknat.lemmyclient.api.requestOpSerializers
-import com.eiknat.lemmyclient.api.responseOpSerializers
+import com.eiknat.lemmyclient.api.internal.RequestOp
+import com.eiknat.lemmyclient.api.internal.ResponseOp
+import com.eiknat.lemmyclient.api.internal.requestOpSerializers
+import com.eiknat.lemmyclient.api.internal.responseOpSerializers
 import io.ktor.client.HttpClient
 import io.ktor.client.features.websocket.WebSockets
 import io.ktor.client.features.websocket.ws
