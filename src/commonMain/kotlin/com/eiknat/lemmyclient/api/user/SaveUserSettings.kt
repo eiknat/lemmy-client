@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("SaveUserSettings")
-class SaveUserSettingsRequest(val data: Data): RequestOp() {
+class SaveUserSettingsRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -30,7 +30,7 @@ class SaveUserSettingsRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("SaveUserSettings")
-class SaveUserSettingsResponse(val data: Data): ResponseOp() {
+class SaveUserSettingsResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

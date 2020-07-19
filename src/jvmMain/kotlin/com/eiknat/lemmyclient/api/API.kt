@@ -4,10 +4,11 @@ import com.eiknat.lemmyclient.APIError
 import com.eiknat.lemmyclient.APIResult
 import com.eiknat.lemmyclient.ErrorEnum
 import com.eiknat.lemmyclient.websocket.WebSocketChannel
-import io.ktor.util.KtorExperimentalAPI
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.channels.consume
-import kotlinx.serialization.ImplicitReflectionSerializer
+import kotlinx.coroutines.withContext
 
 actual open class API {
 

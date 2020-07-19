@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("DeleteAccount")
-class DeleteAccountRequest(val data: Data): RequestOp() {
+class DeleteAccountRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -18,7 +18,7 @@ class DeleteAccountRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("DeleteAccount")
-class DeleteAccountResponse(val data: Data): ResponseOp() {
+class DeleteAccountResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

@@ -13,9 +13,7 @@ import io.ktor.client.features.websocket.ws
 import io.ktor.http.cio.websocket.Frame
 import io.ktor.http.cio.websocket.readText
 import io.ktor.http.cio.websocket.send
-import io.ktor.util.KtorExperimentalAPI
 import kotlinx.coroutines.channels.Channel
-import kotlinx.serialization.ImplicitReflectionSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import kotlinx.serialization.stringify
@@ -23,7 +21,7 @@ import kotlinx.serialization.stringify
 
 object WebSocketClient {
     private const val WEBSOCKET_PATH = "/api/v1/ws"
-    private val client = HttpClient() { install(WebSockets) }
+    private val client = HttpClient { install(WebSockets) }
 
     // TODO check if this is set, and not empty
     lateinit var host: String
@@ -51,8 +49,11 @@ object WebSocketClient {
     }
 
     private fun handleResult(result: String): APIResult<ResponseOp> {
-        return try { APIResult.Success(result.parseResponse()) }
-        catch (e: Exception) { APIResult.Failure(APIError(ErrorEnum.PARSE_ERROR, result)) }
+        return try {
+            APIResult.Success(result.parseResponse())
+        } catch (e: Exception) {
+            APIResult.Failure(APIError(ErrorEnum.PARSE_ERROR, result))
+        }
     }
 
     private fun String.parseResponse() = Json(

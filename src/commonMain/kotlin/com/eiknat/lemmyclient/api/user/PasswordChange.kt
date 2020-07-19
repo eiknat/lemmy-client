@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PasswordChange")
-class PasswordChangeRequest(val data: Data): RequestOp() {
+class PasswordChangeRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class PasswordChangeRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("PasswordChange")
-class PasswordChangeResponse(val data: Data): ResponseOp() {
+class PasswordChangeResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

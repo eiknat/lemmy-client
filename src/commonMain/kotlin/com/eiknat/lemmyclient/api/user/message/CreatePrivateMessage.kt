@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("CreatePrivateMessage")
-class CreatePrivateMessageRequest(val data: Data): RequestOp() {
+class CreatePrivateMessageRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class CreatePrivateMessageRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("CreatePrivateMessage")
-class CreatePrivateMessageResponse(val data: Data): ResponseOp() {
+class CreatePrivateMessageResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

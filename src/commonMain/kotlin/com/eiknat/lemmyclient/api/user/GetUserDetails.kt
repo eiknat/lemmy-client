@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetUserDetails")
-class GetUserDetailsRequest(val data: Data): RequestOp() {
+class GetUserDetailsRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -24,7 +24,7 @@ class GetUserDetailsRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("GetUserDetails")
-class GetUserDetailsResponse(val data: Data): ResponseOp() {
+class GetUserDetailsResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("AddAdmin")
-class AddAdminRequest(val data: Data): RequestOp() {
+class AddAdminRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class AddAdminRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("AddAdmin")
-class AddAdminResponse(val data: Data): ResponseOp() {
+class AddAdminResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

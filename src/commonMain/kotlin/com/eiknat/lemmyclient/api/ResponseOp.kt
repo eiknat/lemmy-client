@@ -32,14 +32,14 @@ fun responseOpSerializers() = SerializersModule {
         GetFollowedCommunitiesResponse::class with GetFollowedCommunitiesResponse.serializer()
         ListCommunitiesResponse::class with ListCommunitiesResponse.serializer()
         TransferCommunityResponse::class with TransferCommunityResponse.serializer()
-        
+
         // post
         CreatePostResponse::class with CreatePostResponse.serializer()
         CreatePostLikeResponse::class with CreatePostLikeResponse.serializer()
         EditPostResponse::class with EditPostResponse.serializer()
         GetPostResponse::class with GetPostResponse.serializer()
         SavePostResponse::class with SavePostResponse.serializer()
-        
+
         // user
         AddAdminResponse::class with AddAdminResponse.serializer()
         BanUserResponse::class with BanUserResponse.serializer()

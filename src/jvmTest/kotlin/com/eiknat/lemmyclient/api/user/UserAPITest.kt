@@ -42,7 +42,9 @@ internal class UserAPITest {
         runBlocking {
             val request = UserJoinRequest(UserJoinRequest.Data(auth))
             when (val response = UserAPI.sendUserJoin(request)) {
-                is APIResult.Failure -> { println(response.error); asserter.fail("request should not have failed") }
+                is APIResult.Failure -> {
+                    println(response.error); asserter.fail("request should not have failed")
+                }
                 is APIResult.Success -> {
                     assertEquals(21, response.data.data.user_id)
                 }

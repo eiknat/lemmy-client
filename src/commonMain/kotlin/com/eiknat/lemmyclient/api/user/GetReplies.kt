@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetReplies")
-class GetRepliesRequest(val data: Data): RequestOp() {
+class GetRepliesRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -21,7 +21,7 @@ class GetRepliesRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("GetReplies")
-class GetRepliesResponse(val data: Data): ResponseOp() {
+class GetRepliesResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

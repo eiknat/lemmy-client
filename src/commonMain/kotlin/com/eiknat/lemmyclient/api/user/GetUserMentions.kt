@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetUserMentions")
-class GetUserMentionsRequest(val data: Data): RequestOp() {
+class GetUserMentionsRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -21,7 +21,7 @@ class GetUserMentionsRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("GetUserMentions")
-class GetUserMentionsResponse(val data: Data): ResponseOp() {
+class GetUserMentionsResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

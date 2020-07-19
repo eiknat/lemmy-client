@@ -12,7 +12,7 @@ actual class WebSocketChannel(
     op: RequestOp,
     scope: CoroutineScope,
     private val channel: Channel<APIResult<ResponseOp>> = Channel()
-): Channel<APIResult<ResponseOp>> by channel {
+) : Channel<APIResult<ResponseOp>> by channel {
 
     init {
         scope.launch(Dispatchers.IO) {

@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("UserJoin")
-class UserJoinRequest(val data: Data): RequestOp() {
+class UserJoinRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -18,7 +18,7 @@ class UserJoinRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("UserJoin")
-class UserJoinResponse(val data: Data): ResponseOp() {
+class UserJoinResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

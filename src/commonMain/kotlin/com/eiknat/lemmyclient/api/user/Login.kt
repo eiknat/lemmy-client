@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("Login")
-class LoginRequest(val data: Data): RequestOp() {
+class LoginRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -18,7 +18,7 @@ class LoginRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("Login")
-class LoginResponse(val data: Data): ResponseOp() {
+class LoginResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

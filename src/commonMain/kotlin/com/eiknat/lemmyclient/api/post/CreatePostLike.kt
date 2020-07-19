@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("CreatePostLike")
-class CreatePostLikeRequest(val data: Data): RequestOp() {
+class CreatePostLikeRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class CreatePostLikeRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("CreatePostLike")
-class CreatePostLikeResponse(val data: Data): ResponseOp() {
+class CreatePostLikeResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

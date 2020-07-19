@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("PasswordReset")
-class PasswordResetRequest(val data: Data): RequestOp() {
+class PasswordResetRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -17,7 +17,7 @@ class PasswordResetRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("PasswordReset")
-class PasswordResetResponse(val data: Data): ResponseOp() {
+class PasswordResetResponse(val data: Data) : ResponseOp() {
 
     // this is actually empty, so there's nothing to deserialize
     @Serializable

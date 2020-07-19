@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("BanUser")
-class BanUserRequest(val data: Data): RequestOp() {
+class BanUserRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -21,7 +21,7 @@ class BanUserRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("BanUser")
-class BanUserResponse(val data: Data): ResponseOp() {
+class BanUserResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

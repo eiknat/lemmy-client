@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("BanFromCommunity")
-class BanFromCommunityRequest(val data: Data): RequestOp() {
+class BanFromCommunityRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -22,7 +22,7 @@ class BanFromCommunityRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("BanFromCommunity")
-class BanFromCommunityResponse(val data: Data): ResponseOp() {
+class BanFromCommunityResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

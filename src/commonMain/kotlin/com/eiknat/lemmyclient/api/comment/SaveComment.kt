@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("SaveComment")
-class SaveCommentRequest(val data: Data): RequestOp() {
+class SaveCommentRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class SaveCommentRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("SaveComment")
-class SaveCommentResponse(val data: Data): ResponseOp() {
+class SaveCommentResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

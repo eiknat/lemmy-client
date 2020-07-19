@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("GetCommunity")
-class GetCommunityRequest(val data: Data): RequestOp() {
+class GetCommunityRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class GetCommunityRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("GetCommunity")
-class GetCommunityResponse(val data: Data): ResponseOp() {
+class GetCommunityResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("MarkAllAsRead")
-class MarkAllAsReadRequest(val data: Data): RequestOp() {
+class MarkAllAsReadRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -17,7 +17,7 @@ class MarkAllAsReadRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("MarkAllAsRead")
-class MarkAllAsReadResponse(val data: Data): ResponseOp() {
+class MarkAllAsReadResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

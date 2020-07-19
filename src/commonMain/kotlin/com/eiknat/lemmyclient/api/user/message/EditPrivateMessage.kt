@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("EditPrivateMessage")
-class EditPrivateMessageRequest(val data: Data): RequestOp() {
+class EditPrivateMessageRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -21,7 +21,7 @@ class EditPrivateMessageRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("EditPrivateMessage")
-class EditPrivateMessageResponse(val data: Data): ResponseOp() {
+class EditPrivateMessageResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(

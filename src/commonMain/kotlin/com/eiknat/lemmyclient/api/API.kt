@@ -4,7 +4,7 @@ import com.eiknat.lemmyclient.APIResult
 
 expect open class API() {
 
-	suspend fun <T> performRequest(op: RequestOp): APIResult<T>
+    suspend fun <T> performRequest(op: RequestOp): APIResult<T>
 
     suspend fun performRequestAsync(op: RequestOp): APIResult<ResponseOp>
 

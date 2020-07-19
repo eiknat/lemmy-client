@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @SerialName("SavePost")
-class SavePostRequest(val data: Data): RequestOp() {
+class SavePostRequest(val data: Data) : RequestOp() {
 
     @Serializable
     data class Data(
@@ -19,7 +19,7 @@ class SavePostRequest(val data: Data): RequestOp() {
 
 @Serializable
 @SerialName("SavePost")
-class SavePostResponse(val data: Data): ResponseOp() {
+class SavePostResponse(val data: Data) : ResponseOp() {
 
     @Serializable
     data class Data(
