@@ -1,10 +1,10 @@
 package com.eiknat.lemmyclient.api.privatemessage
 
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.privatemessage.form.*
 import com.eiknat.lemmyclient.api.privatemessage.response.PrivateMessageResponse
 import com.eiknat.lemmyclient.api.privatemessage.response.PrivateMessagesResponse
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 object PrivateMessage {
 

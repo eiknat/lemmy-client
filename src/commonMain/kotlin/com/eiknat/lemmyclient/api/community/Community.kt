@@ -1,14 +1,9 @@
 package com.eiknat.lemmyclient.api.community
 
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.community.form.*
-import com.eiknat.lemmyclient.api.community.form.asParams
-import com.eiknat.lemmyclient.api.community.response.AddModToCommunityResponse
-import com.eiknat.lemmyclient.api.community.response.BanFromCommunityResponse
-import com.eiknat.lemmyclient.api.community.response.CommunityResponse
-import com.eiknat.lemmyclient.api.community.response.GetCommunityResponse
-import com.eiknat.lemmyclient.api.community.response.ListCommunitiesResponse
+import com.eiknat.lemmyclient.api.community.response.*
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 object Community {
     private val community = Endpoint("/community")

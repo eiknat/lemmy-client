@@ -2,10 +2,10 @@ package com.eiknat.lemmyclient.api.user
 
 import com.eiknat.lemmyclient.api.auth.Auth
 import com.eiknat.lemmyclient.api.auth.toParams
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.user.form.*
 import com.eiknat.lemmyclient.api.user.response.*
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 object User {
 

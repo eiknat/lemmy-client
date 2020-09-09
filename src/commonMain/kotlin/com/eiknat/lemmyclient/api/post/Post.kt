@@ -1,11 +1,11 @@
 package com.eiknat.lemmyclient.api.post
 
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.post.form.*
 import com.eiknat.lemmyclient.api.post.response.GetPostResponse
 import com.eiknat.lemmyclient.api.post.response.GetPostsResponse
 import com.eiknat.lemmyclient.api.post.response.PostResponse
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 object Post {
     private val post = Endpoint("/post")

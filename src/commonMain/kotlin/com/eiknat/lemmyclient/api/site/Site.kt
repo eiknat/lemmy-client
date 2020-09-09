@@ -2,12 +2,12 @@ package com.eiknat.lemmyclient.api.site
 
 import com.eiknat.lemmyclient.api.auth.Auth
 import com.eiknat.lemmyclient.api.auth.toParams
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.site.form.SiteConfigForm
 import com.eiknat.lemmyclient.api.site.form.SiteForm
 import com.eiknat.lemmyclient.api.site.response.GetSiteResponse
 import com.eiknat.lemmyclient.api.site.response.SiteResponse
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 
 object Site {

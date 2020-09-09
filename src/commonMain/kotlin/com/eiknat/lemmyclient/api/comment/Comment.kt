@@ -1,10 +1,10 @@
 package com.eiknat.lemmyclient.api.comment
 
-import com.eiknat.lemmyclient.internal.Endpoint
 import com.eiknat.lemmyclient.api.comment.form.*
 import com.eiknat.lemmyclient.api.comment.response.CommentResponse
 import com.eiknat.lemmyclient.api.comment.response.GetCommentsResponse
 import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.internal.Endpoint
 
 object Comment {
 

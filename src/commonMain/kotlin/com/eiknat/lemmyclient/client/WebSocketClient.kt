@@ -3,13 +3,13 @@ package com.eiknat.lemmyclient.client
 import com.eiknat.lemmyclient.internal.Data
 import com.eiknat.lemmyclient.internal.Request
 import com.eiknat.lemmyclient.internal.WebSocketOperation
-import io.ktor.client.HttpClient
+import io.ktor.client.*
 import io.ktor.client.features.websocket.*
 import io.ktor.client.request.*
-import io.ktor.http.cio.websocket.Frame
-import io.ktor.http.cio.websocket.readText
-import io.ktor.http.cio.websocket.send
-import kotlinx.serialization.*
+import io.ktor.http.cio.websocket.*
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
