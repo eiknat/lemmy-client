@@ -1,23 +1,38 @@
 package com.eiknat.lemmyclient
 
-import com.eiknat.lemmyclient.api.internal.user.UserJoinRequest
-import com.eiknat.lemmyclient.websocket.WebSocketClient
-import io.ktor.util.KtorExperimentalAPI
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.coroutineScope
-import kotlinx.serialization.ImplicitReflectionSerializer
+import com.eiknat.lemmyclient.client.HttpAPI
+import com.eiknat.lemmyclient.client.WebSocketClient
+import io.ktor.client.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.features.websocket.*
+import kotlinx.serialization.json.Json
 
-@ExperimentalCoroutinesApi
-@ImplicitReflectionSerializer
-@KtorExperimentalAPI
-class LemmyAPI(host: String) {
+class LemmyAPI(
+    val baseUrl: String,
+    val enableWebSockets: Boolean = false
+) {
+    private val jsonConfig = Json { ignoreUnknownKeys = true }
 
-    init {
-        WebSocketClient.host = host
+    internal val client by lazy {
+        HttpClient {
+            install(JsonFeature) {
+                serializer = KotlinxSerializer(jsonConfig)
+            }
+            if (enableWebSockets) install(WebSockets)
+        }
     }
 
-    // most of this won't stick around, pretty much just for easy testing
-    suspend fun sendRequest(request: UserJoinRequest) = coroutineScope {
-//        launch { UserAPI.sendUserJoin(request) }
+    init {
+        HttpAPI.apply {
+            this.host = baseUrl
+            this.client = this@LemmyAPI.client
+        }
+        if (enableWebSockets) {
+            WebSocketClient.apply {
+                this.host = baseUrl
+                this.client = this@LemmyAPI.client
+            }
+        }
     }
 }
