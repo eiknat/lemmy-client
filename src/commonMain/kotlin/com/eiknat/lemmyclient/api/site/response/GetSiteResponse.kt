@@ -15,7 +15,7 @@ data class GetSiteResponse(
     val online: Int,
     val version: String,
     @SerialName("my_user")
-    @Contextual
+    @Contextual // TODO: this is only to make tests pass, this won't work until the data class for User is actually made
     val myUser: User?,
     @SerialName("federated_instances")
     val federatedInstances: List<String>?,
