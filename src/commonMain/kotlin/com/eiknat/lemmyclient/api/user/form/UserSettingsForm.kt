@@ -1,5 +1,7 @@
 package com.eiknat.lemmyclient.api.user.form
 
+import com.eiknat.lemmyclient.api.ListingType
+import com.eiknat.lemmyclient.api.SortType
 import com.eiknat.lemmyclient.api.auth.RequireAuthentication
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -10,9 +12,9 @@ data class UserSettingsForm(
     val showNsfw: Boolean,
     val theme: String,
     @SerialName("default_sort_type")
-    val defaultSortType: Int,
+    val defaultSortType: SortType,
     @SerialName("default_listing_type")
-    val defaultListingType: Int,
+    val defaultListingType: ListingType,
     val lang: String,
     val avatar: String?,
     val email: String?,

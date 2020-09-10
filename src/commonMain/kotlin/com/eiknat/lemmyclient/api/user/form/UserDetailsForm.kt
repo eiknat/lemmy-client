@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.user.form
 
+import com.eiknat.lemmyclient.api.SortType
 import com.eiknat.lemmyclient.api.auth.OptionalAuthentication
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -9,7 +10,7 @@ data class UserDetailsForm(
     @SerialName("user_id")
     val userId: Int?,
     val username: String?,
-    val sort: String,
+    val sort: SortType,
     val page: Int?,
     val limit: Int?,
     @SerialName("community_id")
@@ -22,7 +23,7 @@ data class UserDetailsForm(
 internal fun UserDetailsForm.toParams() = mapOf(
     Pair("user_id", userId.toString()),
     Pair("username", username),
-    Pair("sort", sort.toString()),
+    Pair("sort", sort.type),
     Pair("page", page.toString()),
     Pair("limit", limit.toString()),
     Pair("community_id", communityId.toString()),

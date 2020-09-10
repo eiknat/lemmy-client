@@ -1,11 +1,14 @@
 package com.eiknat.lemmyclient.api.post.form
 
+import com.eiknat.lemmyclient.api.SortType
 import com.eiknat.lemmyclient.api.auth.OptionalAuthentication
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class GetPostsForm(
     val type: String,
-    val sort: String,
+    val sort: SortType,
     val page: Int?,
     val limit: Int?,
     @SerialName("community_id")
@@ -17,7 +20,7 @@ data class GetPostsForm(
 
 internal fun GetPostsForm.toParams() = mapOf(
     Pair("type", type),
-    Pair("sort", sort),
+    Pair("sort", sort.type),
     Pair("page", page.toString()),
     Pair("limit", limit.toString()),
     Pair("community_id", communityId.toString()),

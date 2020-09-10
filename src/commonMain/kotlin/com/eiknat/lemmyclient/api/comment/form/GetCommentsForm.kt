@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.comment.form
 
+import com.eiknat.lemmyclient.api.SortType
 import com.eiknat.lemmyclient.api.auth.OptionalAuthentication
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class GetCommentsForm(
     val type: String,
-    val sort: String,
+    val sort: SortType?,
     val page: Int?,
     val limit: Int?,
     @SerialName("community_id")
@@ -19,7 +20,7 @@ data class GetCommentsForm(
 
 internal fun GetCommentsForm.toParams() = mapOf(
     Pair("type", type),
-    Pair("sort", sort),
+    Pair("sort", sort?.type),
     Pair("page", page.toString()),
     Pair("limit", limit.toString()),
     Pair("community_id", communityId.toString()),

@@ -1,12 +1,13 @@
 package com.eiknat.lemmyclient.api.user.form
 
+import com.eiknat.lemmyclient.api.SortType
 import com.eiknat.lemmyclient.api.auth.RequireAuthentication
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserMentionsForm(
-    val sort: String,
+    val sort: SortType,
     val page: Int?,
     val limit: Int?,
     @SerialName("unread_only")
@@ -15,7 +16,7 @@ data class UserMentionsForm(
 ): RequireAuthentication
 
 internal fun UserMentionsForm.toParams() = mapOf(
-    Pair("sort", sort.toString()),
+    Pair("sort", sort.type),
     Pair("page", page.toString()),
     Pair("limit", limit.toString()),
     Pair("unread_only", unreadOnly.toString()),

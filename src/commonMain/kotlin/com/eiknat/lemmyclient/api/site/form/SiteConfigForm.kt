@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class SiteConfigForm(
+data class SiteConfigForm(
     @SerialName("config_hjson")
     val configHjson: String,
     override val auth: String,
