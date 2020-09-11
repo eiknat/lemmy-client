@@ -16,7 +16,6 @@ internal object HttpAPI {
         parameters: Map<String, String?>
     ): T {
         return client.get(endpoint.getUrl()) {
-            this.commonProperties()
             this.buildParameters(parameters)
         }
     }
@@ -41,6 +40,8 @@ internal object HttpAPI {
         }
     }
 
+    private fun Endpoint.getUrl() = host + API_PATH + this.location
+
     private fun HttpRequestBuilder.buildParameters(map: Map<String, String?>) {
         map.forEach {
             if (!it.value.isNullOrEmpty()) {
@@ -49,10 +50,10 @@ internal object HttpAPI {
         }
     }
 
-    fun Endpoint.getUrl() = API_PATH + this.location
-
     private fun HttpRequestBuilder.commonProperties() {
-        this.host = this@HttpAPI.host
+        // TODO i added this for a reason but can't recall why, revalidate when adding a put/post test and remove if
+        // not needed
+//        this.host = this@HttpAPI.host
         this.contentType(ContentType.Application.Json)
     }
 }

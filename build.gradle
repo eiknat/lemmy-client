@@ -41,6 +41,8 @@ kotlin {
         }
         commonTest {
             dependencies {
+                api "io.ktor:ktor-client-mock:$ktor_version" // new, add to kt gradle
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7" // new, add to ktx gradle
                 implementation kotlin('test-common')
                 implementation kotlin('test-annotations-common')
             }

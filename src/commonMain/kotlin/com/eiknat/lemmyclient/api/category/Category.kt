@@ -1,11 +1,12 @@
 package com.eiknat.lemmyclient.api.category
 
+import com.eiknat.lemmyclient.api.category.response.ListCategoriesResponse
+import com.eiknat.lemmyclient.client.HttpAPI
 import com.eiknat.lemmyclient.internal.Endpoint
 
 object Category {
-    private val category = Endpoint("/categories")
 
-//    suspend fun get(): ListCategoriesResponse {
-//        return HTTPClient.client.get(category.getUrl())
-//    }
+    suspend fun list(): ListCategoriesResponse {
+        return HttpAPI.get(Endpoint("/categories"), emptyMap())
+    }
 }

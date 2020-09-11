@@ -1,0 +1,62 @@
+package com.eiknat.lemmyclient.utils
+
+import com.eiknat.lemmyclient.client.HttpAPI
+import io.ktor.client.*
+import io.ktor.client.engine.mock.*
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.client.request.*
+import io.ktor.http.*
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+import kotlin.test.asserter
+
+/**
+ * Mock client to assist in testing
+ *
+ * @param httpMethod the method the request should be using
+ * @param responseJson the stringified mock response json to return
+ * @param endpoint the api endpoint under test
+ */
+class MockClient(
+    private val httpMethod: HttpMethod,
+    private val responseJson: String,
+    private val endpoint: String
+) {
+    companion object {
+        private const val TEST_HOST = "https://test.org"
+    }
+
+    private val client = HttpClient(MockEngine) {
+        install(JsonFeature) {
+            serializer = KotlinxSerializer()
+        }
+        engine {
+            addHandler { request ->
+                validateRequest(request)
+                when (request.url.fullUrl) {
+                    "$TEST_HOST/api/v1$endpoint" -> {
+                        respond(
+                            responseJson,
+                            headers = headersOf("Content-Type" to listOf("application/json")))
+                    }
+                    else -> asserter.fail("Unhandled ${request.url.fullUrl}")
+                }
+            }
+        }
+    }
+
+    private fun validateRequest(request: HttpRequestData) {
+        assertEquals(httpMethod, request.method, "HttpMethod is set correctly")
+        if (httpMethod != HttpMethod.Get) {
+            assertTrue(request.headers.contains("Content-Type", "application/json"), "Request contains application/json content-type header")
+        }
+    }
+
+    init {
+        HttpAPI.client = this@MockClient.client
+        HttpAPI.host = TEST_HOST
+    }
+
+    private val Url.fullUrl: String get() = "$TEST_HOST$fullPath"
+}
