@@ -17,8 +17,8 @@ data class UserMentionsForm(
 
 internal fun UserMentionsForm.toParams() = mapOf(
     Pair("sort", sort.type),
-    Pair("page", page.toString()),
-    Pair("limit", limit.toString()),
+    Pair("page", page?.toString()),
+    Pair("limit", limit?.toString()),
     Pair("unread_only", unreadOnly.toString()),
     Pair("auth", auth),
 )

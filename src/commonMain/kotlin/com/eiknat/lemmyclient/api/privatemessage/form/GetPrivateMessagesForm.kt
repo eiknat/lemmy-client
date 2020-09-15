@@ -15,7 +15,7 @@ data class GetPrivateMessagesForm(
 
 internal fun GetPrivateMessagesForm.toParams() = mapOf(
     Pair("unread_only", unreadOnly.toString()),
-    Pair("page", page.toString()),
-    Pair("limit", limit.toString()),
+    Pair("page", page?.toString()),
+    Pair("limit", limit?.toString()),
     Pair("auth", auth)
 )

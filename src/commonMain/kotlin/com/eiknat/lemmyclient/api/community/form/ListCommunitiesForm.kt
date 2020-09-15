@@ -14,7 +14,7 @@ data class ListCommunitiesForm(
 
 internal fun ListCommunitiesForm.asParams() = mapOf(
     Pair("sort", sort.type),
-    Pair("page", page.toString()),
-    Pair("limit", limit.toString()),
+    Pair("page", page?.toString()),
+    Pair("limit", limit?.toString()),
     Pair("auth", auth)
 )

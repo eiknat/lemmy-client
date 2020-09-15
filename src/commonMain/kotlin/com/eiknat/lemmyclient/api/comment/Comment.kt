@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.comment
 
+import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.comment.form.*
 import com.eiknat.lemmyclient.api.comment.response.CommentResponse
 import com.eiknat.lemmyclient.api.comment.response.GetCommentsResponse
@@ -8,7 +9,7 @@ import com.eiknat.lemmyclient.internal.Endpoint
 
 object Comment {
 
-    suspend fun list(form: GetCommentsForm): GetCommentsResponse {
+    suspend fun list(form: GetCommentsForm): APIResponse<GetCommentsResponse> {
         return HttpAPI.get(Endpoint("/comment/list"), form.toParams())
     }
 

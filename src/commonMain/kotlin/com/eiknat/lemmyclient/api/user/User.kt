@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.user
 
+import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.auth.Auth
 import com.eiknat.lemmyclient.api.auth.toParams
 import com.eiknat.lemmyclient.api.user.form.*
@@ -9,8 +10,8 @@ import com.eiknat.lemmyclient.internal.Endpoint
 
 object User {
 
-    suspend fun getCaptcha(): GetCaptchaResponse {
-        return HttpAPI.get(Endpoint("/user/get_captcha"), emptyMap())
+    suspend fun getCaptcha(): APIResponse<GetCaptchaResponse> {
+        return HttpAPI.get(Endpoint("/user/get_captcha"))
     }
 
     suspend fun register(form: RegisterForm): LoginResponse {
@@ -33,19 +34,19 @@ object User {
         return HttpAPI.post(Endpoint("/user/join"), auth)
     }
 
-    suspend fun getDetails(form: UserDetailsForm): UserDetailsResponse {
+    suspend fun getDetails(form: UserDetailsForm): APIResponse<UserDetailsResponse> {
         return HttpAPI.get(Endpoint("/user"), form.toParams())
     }
 
-    suspend fun getMentions(form: UserMentionsForm): UserMentionsResponse {
+    suspend fun getMentions(form: UserMentionsForm): APIResponse<UserMentionsResponse> {
         return HttpAPI.get(Endpoint("/user/mention"), form.toParams())
     }
 
-    suspend fun getReplies(form: GetRepliesForm): GetRepliesResponse {
+    suspend fun getReplies(form: GetRepliesForm): APIResponse<GetRepliesResponse> {
         return HttpAPI.get(Endpoint("/user/replies"), form.toParams())
     }
 
-    suspend fun getFollowedCommunities(auth: Auth): GetFollowedCommunitiesResponse {
+    suspend fun getFollowedCommunities(auth: Auth): APIResponse<GetFollowedCommunitiesResponse> {
         return HttpAPI.get(Endpoint("/user/followed_communities"), auth.toParams())
     }
 

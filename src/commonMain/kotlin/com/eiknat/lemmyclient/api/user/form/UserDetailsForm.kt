@@ -21,11 +21,11 @@ data class UserDetailsForm(
 ): OptionalAuthentication
 
 internal fun UserDetailsForm.toParams() = mapOf(
-    Pair("user_id", userId.toString()),
+    Pair("user_id", userId?.toString()),
     Pair("username", username),
     Pair("sort", sort.type),
-    Pair("page", page.toString()),
-    Pair("limit", limit.toString()),
-    Pair("community_id", communityId.toString()),
+    Pair("page", page?.toString()),
+    Pair("limit", limit?.toString()),
+    Pair("community_id", communityId?.toString()),
     Pair("saved_only", savedOnly.toString()),
 )

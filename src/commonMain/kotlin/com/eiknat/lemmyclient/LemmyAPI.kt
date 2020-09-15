@@ -12,7 +12,10 @@ class LemmyAPI(
     val baseUrl: String,
     val enableWebSockets: Boolean = false
 ) {
-    private val jsonConfig = Json { ignoreUnknownKeys = true }
+    private val jsonConfig = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues = true
+    }
 
     internal val client by lazy {
         HttpClient {

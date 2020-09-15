@@ -9,9 +9,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserDetailsResponse(
     val user: UserView,
-    val follows: List<CommunityUser>,
-    val moderates: List<CommunityUser>,
-    val comments: List<Comment>,
-    val posts: List<Post>,
-    val admins: List<UserView>
+    val follows: List<CommunityUser> = emptyList(),
+    val moderates: List<CommunityUser> = emptyList(),
+    val comments: List<Comment> = emptyList(),
+    val posts: List<Post> = emptyList(),
+    val admins: List<UserView> = emptyList()
 )

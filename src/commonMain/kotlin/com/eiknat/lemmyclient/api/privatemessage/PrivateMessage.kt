@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.privatemessage
 
+import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.privatemessage.form.*
 import com.eiknat.lemmyclient.api.privatemessage.response.PrivateMessageResponse
 import com.eiknat.lemmyclient.api.privatemessage.response.PrivateMessagesResponse
@@ -8,7 +9,7 @@ import com.eiknat.lemmyclient.internal.Endpoint
 
 object PrivateMessage {
 
-    suspend fun list(form: GetPrivateMessagesForm): PrivateMessagesResponse {
+    suspend fun list(form: GetPrivateMessagesForm): APIResponse<PrivateMessagesResponse> {
         return HttpAPI.get(Endpoint("/private_message/list"), form.toParams())
     }
 

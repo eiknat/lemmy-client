@@ -10,7 +10,7 @@ data class User(
     val id: Int,
     val name: String,
     @SerialName("preferred_user_name")
-    val preferredUsername: String,
+    val preferredUsername: String? = null, // this errors if it's null for some reason
     val email: String?,
     val avatar: String?,
     val banner: String?,
@@ -22,15 +22,15 @@ data class User(
     val showNsfw: Boolean,
     val theme: String,
     @SerialName("default_sort_type")
-    val defaultSortType: SortType,
+    val defaultSortType: Int, // should these return SortType/ListingType?
     @SerialName("default_listing_type")
-    val defaultListingType: ListingType,
-    @SerialName("matrix_user_id")
+    val defaultListingType: Int,
     val lang: String,
     @SerialName("show_avatars")
     val showAvatars: Boolean,
     @SerialName("send_notifications_to_email")
     val sendNotificationsToEmail: Boolean,
+    @SerialName("matrix_user_id")
     val matrixUserId: String?,
     @SerialName("actor_id")
     val actorId: String,

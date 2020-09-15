@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.community
 
+import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.community.form.*
 import com.eiknat.lemmyclient.api.community.response.*
 import com.eiknat.lemmyclient.client.HttpAPI
@@ -8,7 +9,7 @@ import com.eiknat.lemmyclient.internal.Endpoint
 object Community {
     private val community = Endpoint("/community")
 
-    suspend fun get(form: GetCommunityForm): GetCommunityResponse {
+    suspend fun get(form: GetCommunityForm): APIResponse<GetCommunityResponse> {
         return HttpAPI.get(community, form.asParams())
     }
 
@@ -20,7 +21,7 @@ object Community {
         return HttpAPI.put(community, form)
     }
 
-    suspend fun list(form: ListCommunitiesForm): ListCommunitiesResponse {
+    suspend fun list(form: ListCommunitiesForm): APIResponse<ListCommunitiesResponse> {
         return HttpAPI.get(Endpoint("/community/list"), form.asParams())
     }
 

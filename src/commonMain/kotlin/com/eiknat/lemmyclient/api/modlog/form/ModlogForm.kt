@@ -14,8 +14,8 @@ data class ModlogForm(
 )
 
 internal fun ModlogForm.toParams() = mapOf(
-    Pair("mod_user_id", modUserId.toString()),
-    Pair("community_id", communityId.toString()),
-    Pair("page", page.toString()),
-    Pair("limit", limit.toString())
+    Pair("mod_user_id", modUserId?.toString()),
+    Pair("community_id", communityId?.toString()),
+    Pair("page", page?.toString()),
+    Pair("limit", limit?.toString())
 )

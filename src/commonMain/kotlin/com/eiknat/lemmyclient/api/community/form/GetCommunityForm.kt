@@ -10,7 +10,7 @@ data class GetCommunityForm(
 
 
 internal fun GetCommunityForm.asParams() = mapOf(
-    Pair("id", id.toString()),
+    Pair("id", id?.toString()),
     Pair("name", name),
     Pair("auth", auth)
 )

@@ -1,10 +1,13 @@
 package com.eiknat.lemmyclient.client
 
-
+import com.eiknat.lemmyclient.api.APIResponse
+import com.eiknat.lemmyclient.api.handleError
 import com.eiknat.lemmyclient.internal.Endpoint
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.http.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 internal object HttpAPI {
     private const val API_PATH = "/api/v1"
@@ -13,10 +16,12 @@ internal object HttpAPI {
 
     suspend inline fun <reified T> get(
         endpoint: Endpoint,
-        parameters: Map<String, String?>
-    ): T {
-        return client.get(endpoint.getUrl()) {
-            this.buildParameters(parameters)
+        parameters: Map<String, String?> = emptyMap()
+    ): APIResponse<T> {
+        return send {
+            client.get(endpoint.getUrl()) {
+                this.buildParameters(parameters)
+            }
         }
     }
 
@@ -37,6 +42,14 @@ internal object HttpAPI {
         return client.post(endpoint.getUrl()) {
             this.commonProperties()
             this.body = body
+        }
+    }
+
+    private inline fun <reified T> send(block: () -> T): APIResponse<T> {
+        return try {
+            APIResponse.Ok(block())
+        } catch (t: Throwable) {
+            handleError(t)
         }
     }
 

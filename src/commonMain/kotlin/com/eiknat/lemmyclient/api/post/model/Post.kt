@@ -75,8 +75,8 @@ data class Post(
     val userId: Int?,
     @SerialName("my_vote")
     val myVote: Int?,
-    val subscribed: Boolean,
-    val read: Boolean,
-    val saved: Boolean,
-    val duplicates: List<Post>
+    val subscribed: Boolean = false,
+    val read: Boolean = false,
+    val saved: Boolean = false,
+    val duplicates: List<Post> = emptyList()
 )

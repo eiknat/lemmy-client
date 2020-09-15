@@ -18,10 +18,12 @@ import kotlin.test.asserter
  * @param responseJson the stringified mock response json to return
  * @param endpoint the api endpoint under test
  */
-class MockClient(
+internal class MockClient(
     private val httpMethod: HttpMethod,
-    private val responseJson: String,
-    private val endpoint: String
+    private val endpoint: String,
+    private val queryParams: String = "",
+    private val responseJson: String = "",
+    private val httpStatusCode: HttpStatusCode = HttpStatusCode.OK
 ) {
     companion object {
         private const val TEST_HOST = "https://test.org"
@@ -35,9 +37,10 @@ class MockClient(
             addHandler { request ->
                 validateRequest(request)
                 when (request.url.fullUrl) {
-                    "$TEST_HOST/api/v1$endpoint" -> {
+                    "$TEST_HOST/api/v1$endpoint$queryParams" -> {
                         respond(
-                            responseJson,
+                            content = responseJson,
+                            status = httpStatusCode,
                             headers = headersOf("Content-Type" to listOf("application/json")))
                     }
                     else -> asserter.fail("Unhandled ${request.url.fullUrl}")
@@ -47,6 +50,7 @@ class MockClient(
     }
 
     private fun validateRequest(request: HttpRequestData) {
+        assertEquals("$TEST_HOST/api/v1$endpoint$queryParams", request.url.fullUrl)
         assertEquals(httpMethod, request.method, "HttpMethod is set correctly")
         if (httpMethod != HttpMethod.Get) {
             assertTrue(request.headers.contains("Content-Type", "application/json"), "Request contains application/json content-type header")

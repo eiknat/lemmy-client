@@ -11,7 +11,7 @@ data class Comment(
     @SerialName("post_id")
     val postId: Int,
     @SerialName("parent_id")
-    val parentId: Int,
+    val parentId: Int?,
     val content: String,
     val removed: Boolean,
     val read: Boolean,
@@ -39,16 +39,16 @@ data class Comment(
     @SerialName("creator_name")
     val creatorName: String,
     @SerialName("creator_avatar")
-    val creatorAvatar: String,
+    val creatorAvatar: String?,
     val score: Int,
     val upvotes: Int,
     val downvotes: Int,
     @SerialName("hot_rank")
     val hotRank: Int,
     @SerialName("user_id")
-    val userId: Int,
+    val userId: Int?,
     @SerialName("my_vote")
-    val myVote: Int,
-    val subscribed: Boolean,
-    val saved: Boolean
+    val myVote: Int?,
+    val subscribed: Boolean = false,
+    val saved: Boolean = false,
 )

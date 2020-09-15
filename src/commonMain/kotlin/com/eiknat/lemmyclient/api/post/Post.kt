@@ -1,5 +1,6 @@
 package com.eiknat.lemmyclient.api.post
 
+import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.post.form.*
 import com.eiknat.lemmyclient.api.post.response.GetPostResponse
 import com.eiknat.lemmyclient.api.post.response.GetPostsResponse
@@ -10,11 +11,11 @@ import com.eiknat.lemmyclient.internal.Endpoint
 object Post {
     private val post = Endpoint("/post")
 
-    suspend fun get(form: GetPostForm): GetPostResponse {
+    suspend fun get(form: GetPostForm): APIResponse<GetPostResponse> {
         return HttpAPI.get(post, form.toParams())
     }
 
-    suspend fun list(form: GetPostsForm): GetPostsResponse {
+    suspend fun list(form: GetPostsForm): APIResponse<GetPostsResponse> {
         return HttpAPI.get(Endpoint("/post/list"), form.toParams())
     }
 
