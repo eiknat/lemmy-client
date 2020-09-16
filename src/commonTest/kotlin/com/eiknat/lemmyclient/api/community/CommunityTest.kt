@@ -130,6 +130,36 @@ internal class CommunityTest {
     }
 
     @Test
+    fun `edit community`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = COMMUNITY_RESPONSE,
+                endpoint = "/community",
+            )
+
+            val form = EditCommunityForm(
+                communityId = 145,
+                name = "testcommunity",
+                title = "test community",
+                description = "desc",
+                icon = null,
+                banner = null,
+                categoryId = 1,
+                nsfw = false,
+                auth = "testauth"
+            )
+
+            when (val res = Community.edit(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertEquals("testcommunity", res.data.community.name)
+                }
+            }
+        }
+    }
+
+    @Test
     fun `transfer community`() {
         executeTest {
             MockClient(

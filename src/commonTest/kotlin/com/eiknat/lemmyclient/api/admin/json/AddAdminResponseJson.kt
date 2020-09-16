@@ -42,4 +42,5 @@ internal const val ADD_ADMIN_RESPONSE = """
       "comment_score": 16
     }
   ]
+}
 """

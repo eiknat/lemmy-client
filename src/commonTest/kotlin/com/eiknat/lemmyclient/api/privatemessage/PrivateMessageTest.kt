@@ -1,10 +1,7 @@
 package com.eiknat.lemmyclient.api.privatemessage
 
 import com.eiknat.lemmyclient.api.APIResponse
-import com.eiknat.lemmyclient.api.privatemessage.form.DeletePrivateMessageForm
-import com.eiknat.lemmyclient.api.privatemessage.form.GetPrivateMessagesForm
-import com.eiknat.lemmyclient.api.privatemessage.form.MarkPrivateMessageAsReadForm
-import com.eiknat.lemmyclient.api.privatemessage.form.PrivateMessageForm
+import com.eiknat.lemmyclient.api.privatemessage.form.*
 import com.eiknat.lemmyclient.api.privatemessage.json.GET_PRIVATE_MESSAGES_RESPONSE
 import com.eiknat.lemmyclient.api.privatemessage.json.PRIVATE_MESSAGE_RESPONSE
 import com.eiknat.lemmyclient.utils.MockClient
@@ -62,6 +59,30 @@ internal class PrivateMessageTest {
             )
 
             when (val res = PrivateMessage.create(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertEquals("hello", res.data.message.content)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `edit private message`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = PRIVATE_MESSAGE_RESPONSE,
+                endpoint = "/private_message",
+            )
+
+            val form = EditPrivateMessageForm(
+                messageId = 131,
+                content = "hello",
+                auth = "testauth"
+            )
+
+            when (val res = PrivateMessage.edit(form)) {
                 is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
                 is APIResponse.Ok -> {
                     assertEquals("hello", res.data.message.content)

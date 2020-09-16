@@ -17,7 +17,7 @@ object PrivateMessage {
         return HttpAPI.post(Endpoint("/private_message"), form)
     }
 
-    suspend fun edit(form: EditPrivateMessageForm): PrivateMessageResponse {
+    suspend fun edit(form: EditPrivateMessageForm): APIResponse<PrivateMessageResponse> {
         return HttpAPI.put(Endpoint("/private_message"), form)
     }
 

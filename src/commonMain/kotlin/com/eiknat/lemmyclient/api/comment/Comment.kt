@@ -17,7 +17,7 @@ object Comment {
         return HttpAPI.post(Endpoint("/comment"), form)
     }
 
-    suspend fun edit(form: EditCommentForm): CommentResponse {
+    suspend fun edit(form: EditCommentForm): APIResponse<CommentResponse> {
         return HttpAPI.put(Endpoint("/comment"), form)
     }
 

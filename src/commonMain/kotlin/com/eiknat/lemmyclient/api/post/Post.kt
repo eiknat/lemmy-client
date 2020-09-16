@@ -23,7 +23,7 @@ object Post {
         return HttpAPI.post(post, form)
     }
 
-    suspend fun edit(form: EditPostForm): PostResponse {
+    suspend fun edit(form: EditPostForm): APIResponse<PostResponse> {
         return HttpAPI.put(post, form)
     }
 
@@ -47,7 +47,7 @@ object Post {
         return HttpAPI.post(Endpoint("/post/like"), form)
     }
 
-    suspend fun save(form: SavePostForm): PostResponse {
+    suspend fun save(form: SavePostForm): APIResponse<PostResponse> {
         return HttpAPI.put(Endpoint("/post/save"), form)
     }
 }

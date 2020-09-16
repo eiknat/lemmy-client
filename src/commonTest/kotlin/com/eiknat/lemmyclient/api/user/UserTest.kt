@@ -281,6 +281,41 @@ internal class UserTest {
     }
 
     @Test
+    fun `save user settings`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = LOGIN_RESPONSE,
+                endpoint = "/user/save_user_settings",
+            )
+
+            val form = UserSettingsForm(
+                showNsfw = true,
+                theme = "darkly",
+                defaultSortType = 1,
+                defaultListingType = 1,
+                lang = "browser",
+                avatar = null,
+                email = null,
+                matrixUserId = null,
+                newPassword = null,
+                newPasswordVerify = null,
+                oldPassword = null,
+                showAvatars = true,
+                sendNotificationsToEmail = false,
+                auth = "testauth"
+            )
+
+            when (val res = User.saveSettings(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertEquals("jfoafioajijsf8afy78anfa.af8a9unda-afja8f7a8", res.data.jwt)
+                }
+            }
+        }
+    }
+
+    @Test
     fun `delete account`() {
         executeTest {
             MockClient(

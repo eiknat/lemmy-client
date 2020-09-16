@@ -54,7 +54,7 @@ object User {
         return HttpAPI.post(Endpoint("/user/mention/mark_as_read"), form)
     }
 
-    suspend fun saveSettings(form: UserSettingsForm): LoginResponse {
+    suspend fun saveSettings(form: UserSettingsForm): APIResponse<LoginResponse> {
         return HttpAPI.put(Endpoint("/user/save_user_settings"), form)
     }
 

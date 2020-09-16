@@ -2,6 +2,7 @@ package com.eiknat.lemmyclient.api.site
 
 import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.auth.Auth
+import com.eiknat.lemmyclient.api.site.form.SiteConfigForm
 import com.eiknat.lemmyclient.api.site.form.SiteForm
 import com.eiknat.lemmyclient.api.site.form.TransferSiteForm
 import com.eiknat.lemmyclient.api.site.json.GET_SITE_CONFIG_RESPONSE
@@ -37,25 +38,6 @@ internal class SiteTest {
     }
 
     @Test
-    fun `get site config`() {
-        executeTest {
-            MockClient(
-                httpMethod = HttpMethod.Get,
-                responseJson = GET_SITE_CONFIG_RESPONSE,
-                endpoint = "/site/config",
-                queryParams = "?auth=testauth"
-            )
-
-            when (val res = Site.getConfig(Auth("testauth"))) {
-                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
-                is APIResponse.Ok -> {
-                    assertTrue(res.data.configHjson.isNotEmpty(), "config_hjson is returned")
-                }
-            }
-        }
-    }
-
-    @Test
     fun `create site`() {
         executeTest {
             MockClient(
@@ -76,6 +58,35 @@ internal class SiteTest {
             )
 
             when (val res = Site.create(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertEquals("testsite", res.data.site.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `edit site`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = SITE_RESPONSE,
+                endpoint = "/site",
+            )
+
+            val form = SiteForm(
+                name = "testsite2",
+                description = "test description",
+                icon = null,
+                banner = null,
+                enableDownvotes = true,
+                openRegistration = true,
+                enableNsfw = true,
+                auth = "testauth"
+            )
+
+            when (val res = Site.edit(form)) {
                 is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
                 is APIResponse.Ok -> {
                     assertEquals("testsite", res.data.site.name)
@@ -107,4 +118,45 @@ internal class SiteTest {
         }
     }
 
+    @Test
+    fun `get site config`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Get,
+                responseJson = GET_SITE_CONFIG_RESPONSE,
+                endpoint = "/site/config",
+                queryParams = "?auth=testauth"
+            )
+
+            when (val res = Site.getConfig(Auth("testauth"))) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertTrue(res.data.configHjson.isNotEmpty(), "config_hjson is returned")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `edit site config`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = GET_SITE_CONFIG_RESPONSE,
+                endpoint = "/site/config",
+            )
+
+            val form = SiteConfigForm(
+                configHjson = "stuff",
+                auth = "testauth",
+            )
+
+            when (val res = Site.editConfig(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    assertTrue(res.data.configHjson.isNotEmpty(), "config_hjson is returned")
+                }
+            }
+        }
+    }
 }

@@ -17,7 +17,7 @@ object Community {
         return HttpAPI.post(community, form)
     }
 
-    suspend fun edit(form: EditCommunityForm): CommunityResponse {
+    suspend fun edit(form: EditCommunityForm): APIResponse<CommunityResponse> {
         return HttpAPI.put(community, form)
     }
 

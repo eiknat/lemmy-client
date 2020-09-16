@@ -26,7 +26,7 @@ object Site {
         return HttpAPI.post(site, form)
     }
 
-    suspend fun edit(form: SiteForm): SiteResponse {
+    suspend fun edit(form: SiteForm): APIResponse<SiteResponse> {
         return HttpAPI.put(site, form)
     }
 
@@ -38,7 +38,7 @@ object Site {
         return HttpAPI.get(siteConfig, auth.toParams())
     }
 
-    suspend fun editConfig(form: SiteConfigForm): GetSiteConfigResponse {
-        return HttpAPI.put(site, form)
+    suspend fun editConfig(form: SiteConfigForm): APIResponse<GetSiteConfigResponse> {
+        return HttpAPI.put(siteConfig, form)
     }
 }

@@ -107,6 +107,36 @@ internal class PostTest {
     }
 
     @Test
+    fun `edit post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post",
+            )
+
+            val form = EditPostForm(
+                postId = 5146,
+                name = "test",
+                url = null,
+                body = null,
+                communityId = 2,
+                nsfw = false,
+                auth = "testauth"
+            )
+
+            when (val res = Post.edit(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
     fun `delete post`() {
         executeTest {
             MockClient(
@@ -227,6 +257,32 @@ internal class PostTest {
             )
 
             when (val res = Post.like(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `save post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/save",
+            )
+
+            val form = SavePostForm(
+                postId = 5146,
+                save = true,
+                auth = "testauth"
+            )
+
+            when (val res = Post.save(form)) {
                 is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
                 is APIResponse.Ok -> {
                     val post = res.data.post

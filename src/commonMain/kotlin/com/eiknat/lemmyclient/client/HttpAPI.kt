@@ -28,10 +28,12 @@ internal object HttpAPI {
     suspend inline fun <reified T> put(
         endpoint: Endpoint,
         body: Any
-    ): T {
-        return client.put(endpoint.getUrl()) {
-            this.commonProperties()
-            this.body = body
+    ): APIResponse<T> {
+        return send {
+            client.put(endpoint.getUrl()) {
+                this.commonProperties()
+                this.body = body
+            }
         }
     }
 
@@ -66,9 +68,6 @@ internal object HttpAPI {
     }
 
     private fun HttpRequestBuilder.commonProperties() {
-        // TODO i added this for a reason but can't recall why, revalidate when adding a put/post test and remove if
-        // not needed
-//        this.host = this@HttpAPI.host
         this.contentType(ContentType.Application.Json)
     }
 }

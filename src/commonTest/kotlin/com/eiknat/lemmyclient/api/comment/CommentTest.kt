@@ -75,6 +75,35 @@ internal class CommentTest {
     }
 
     @Test
+    fun `edit comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment",
+            )
+
+            val form = EditCommentForm(
+                commentId = 5513,
+                content = "test comment",
+                creatorId = 1201,
+                parentId = null,
+                postId = 1,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.edit(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+
+    @Test
     fun `delete comment`() {
         executeTest {
             MockClient(
@@ -178,5 +207,30 @@ internal class CommentTest {
             }
         }
     }
-    
+
+    @Test
+    fun `save comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Put,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment/save",
+            )
+
+            val form = SaveCommentForm(
+                commentId = 5513,
+                save = true,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.save(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
 }
