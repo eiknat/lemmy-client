@@ -38,10 +38,12 @@ internal object HttpAPI {
     suspend inline fun <reified T> post(
         endpoint: Endpoint,
         body: Any
-    ): T {
-        return client.post(endpoint.getUrl()) {
-            this.commonProperties()
-            this.body = body
+    ): APIResponse<T> {
+       return send {
+            client.post(endpoint.getUrl()) {
+                this.commonProperties()
+                this.body = body
+            }
         }
     }
 

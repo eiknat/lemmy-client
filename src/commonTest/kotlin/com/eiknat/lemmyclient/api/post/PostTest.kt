@@ -3,10 +3,10 @@ package com.eiknat.lemmyclient.api.post
 import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.ListingType
 import com.eiknat.lemmyclient.api.SortType
-import com.eiknat.lemmyclient.api.post.form.GetPostForm
-import com.eiknat.lemmyclient.api.post.form.GetPostsForm
+import com.eiknat.lemmyclient.api.post.form.*
 import com.eiknat.lemmyclient.api.post.json.GET_POSTS_RESPONSE
 import com.eiknat.lemmyclient.api.post.json.GET_POST_RESPONSE
+import com.eiknat.lemmyclient.api.post.json.POST_RESPONSE
 import com.eiknat.lemmyclient.utils.MockClient
 import com.eiknat.lemmyclient.utils.executeTest
 import io.ktor.http.*
@@ -72,6 +72,166 @@ internal class PostTest {
                     val post = res.data.posts.first()
                     assertEquals(341, post.id, "deserialized post id correctly")
                     assertEquals("test post", post.name, "deserialized post name correctly")
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `create post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post",
+            )
+
+            val form = CreatePostForm(
+                name = "test",
+                url = null,
+                body = null,
+                communityId = 2,
+                nsfw = false,
+                auth = "testauth"
+            )
+
+            when (val res = Post.create(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `delete post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/delete",
+            )
+
+            val form = DeletePostForm(
+                postId = 5146,
+                deleted = false,
+                auth = "testauth"
+            )
+
+            when (val res = Post.delete(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `remove post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/remove",
+            )
+
+            val form = RemovePostForm(
+                postId = 5146,
+                removed = false,
+                reason = "test reason",
+                auth = "testauth"
+            )
+
+            when (val res = Post.remove(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `lock post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/lock",
+            )
+
+            val form = LockPostForm(
+                postId = 5146,
+                locked = false,
+                auth = "testauth"
+            )
+
+            when (val res = Post.lock(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `sticky post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/sticky",
+            )
+
+            val form = StickyPostForm(
+                postId = 5146,
+                stickied = false,
+                auth = "testauth"
+            )
+
+            when (val res = Post.sticky(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `like post`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = POST_RESPONSE,
+                endpoint = "/post/like",
+            )
+
+            val form = LikePostForm(
+                postId = 5146,
+                score = 1,
+                auth = "testauth"
+            )
+
+            when (val res = Post.like(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val post = res.data.post
+                    assertEquals(5146, post.id)
+                    assertEquals("test", post.name)
                 }
             }
         }

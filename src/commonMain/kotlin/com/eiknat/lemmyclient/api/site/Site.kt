@@ -5,6 +5,7 @@ import com.eiknat.lemmyclient.api.auth.Auth
 import com.eiknat.lemmyclient.api.auth.toParams
 import com.eiknat.lemmyclient.api.site.form.SiteConfigForm
 import com.eiknat.lemmyclient.api.site.form.SiteForm
+import com.eiknat.lemmyclient.api.site.form.TransferSiteForm
 import com.eiknat.lemmyclient.api.site.response.GetSiteConfigResponse
 import com.eiknat.lemmyclient.api.site.response.GetSiteResponse
 import com.eiknat.lemmyclient.api.site.response.SiteResponse
@@ -21,15 +22,15 @@ object Site {
         return HttpAPI.get(site, auth.toParams())
     }
 
-    suspend fun create(form: SiteForm): SiteResponse {
-        return HttpAPI.put(site, form)
-    }
-
-    suspend fun edit(form: SiteForm): SiteResponse {
+    suspend fun create(form: SiteForm): APIResponse<SiteResponse> {
         return HttpAPI.post(site, form)
     }
 
-    suspend fun transfer(form: SiteForm): GetSiteResponse {
+    suspend fun edit(form: SiteForm): SiteResponse {
+        return HttpAPI.put(site, form)
+    }
+
+    suspend fun transfer(form: TransferSiteForm): APIResponse<GetSiteResponse> {
         return HttpAPI.post(siteTransfer, form)
     }
 
@@ -38,6 +39,6 @@ object Site {
     }
 
     suspend fun editConfig(form: SiteConfigForm): GetSiteConfigResponse {
-        return HttpAPI.post(site, form)
+        return HttpAPI.put(site, form)
     }
 }

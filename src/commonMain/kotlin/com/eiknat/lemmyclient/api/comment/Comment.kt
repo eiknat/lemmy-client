@@ -13,7 +13,7 @@ object Comment {
         return HttpAPI.get(Endpoint("/comment/list"), form.toParams())
     }
 
-    suspend fun create(form: CreateCommentForm): CommentResponse {
+    suspend fun create(form: CreateCommentForm): APIResponse<CommentResponse> {
         return HttpAPI.post(Endpoint("/comment"), form)
     }
 
@@ -21,23 +21,23 @@ object Comment {
         return HttpAPI.put(Endpoint("/comment"), form)
     }
 
-    suspend fun delete(form: DeleteCommentForm): CommentResponse {
+    suspend fun delete(form: DeleteCommentForm): APIResponse<CommentResponse> {
         return HttpAPI.post(Endpoint("/comment/delete"), form)
     }
 
-    suspend fun remove(form: RemoveCommentForm): CommentResponse {
+    suspend fun remove(form: RemoveCommentForm): APIResponse<CommentResponse> {
         return HttpAPI.post(Endpoint("/comment/remove"), form)
     }
 
-    suspend fun markAsRead(form: MarkCommentAsReadForm): CommentResponse {
+    suspend fun markAsRead(form: MarkCommentAsReadForm): APIResponse<CommentResponse> {
         return HttpAPI.post(Endpoint("/comment/mark_as_read"), form)
     }
 
-    suspend fun like(form: CommentLikeForm): CommentResponse {
+    suspend fun like(form: LikeCommentForm): APIResponse<CommentResponse> {
         return HttpAPI.post(Endpoint("/comment/like"), form)
     }
 
-    suspend fun save(form: SaveCommentForm): CommentResponse {
-        return HttpAPI.post(Endpoint("/comment/save"), form)
+    suspend fun save(form: SaveCommentForm): APIResponse<CommentResponse> {
+        return HttpAPI.put(Endpoint("/comment/save"), form)
     }
 }

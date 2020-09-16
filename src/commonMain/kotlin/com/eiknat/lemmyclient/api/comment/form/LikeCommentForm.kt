@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CommentLikeForm(
+data class LikeCommentForm(
     @SerialName("comment_id")
     val commentId: Int,
     val score: Int,

@@ -5,9 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CommunityForm(
-    @SerialName("edit_id")
-    val communityId: Int,
+data class CreateCommunityForm(
     val name: String,
     val title: String,
     val description: String?,

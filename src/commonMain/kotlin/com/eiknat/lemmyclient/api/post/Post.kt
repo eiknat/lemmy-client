@@ -19,7 +19,7 @@ object Post {
         return HttpAPI.get(Endpoint("/post/list"), form.toParams())
     }
 
-    suspend fun create(form: CreatePostForm): PostResponse {
+    suspend fun create(form: CreatePostForm): APIResponse<PostResponse> {
         return HttpAPI.post(post, form)
     }
 
@@ -27,27 +27,27 @@ object Post {
         return HttpAPI.put(post, form)
     }
 
-    suspend fun delete(form: DeletePostForm): PostResponse {
+    suspend fun delete(form: DeletePostForm): APIResponse<PostResponse> {
         return HttpAPI.post(Endpoint("/post/delete"), form)
     }
 
-    suspend fun remove(form: RemovePostForm): PostResponse {
+    suspend fun remove(form: RemovePostForm): APIResponse<PostResponse> {
         return HttpAPI.post(Endpoint("/post/remove"), form)
     }
 
-    suspend fun lock(form: LockPostForm): PostResponse {
+    suspend fun lock(form: LockPostForm): APIResponse<PostResponse> {
         return HttpAPI.post(Endpoint("/post/lock"), form)
     }
 
-    suspend fun sticky(form: StickyPostForm): PostResponse {
+    suspend fun sticky(form: StickyPostForm): APIResponse<PostResponse> {
         return HttpAPI.post(Endpoint("/post/sticky"), form)
     }
 
-    suspend fun like(form: LikePostForm): PostResponse {
+    suspend fun like(form: LikePostForm): APIResponse<PostResponse> {
         return HttpAPI.post(Endpoint("/post/like"), form)
     }
 
     suspend fun save(form: SavePostForm): PostResponse {
-        return HttpAPI.post(Endpoint("/post/save"), form)
+        return HttpAPI.put(Endpoint("/post/save"), form)
     }
 }

@@ -13,7 +13,7 @@ object PrivateMessage {
         return HttpAPI.get(Endpoint("/private_message/list"), form.toParams())
     }
 
-    suspend fun create(form: PrivateMessageForm): PrivateMessageResponse {
+    suspend fun create(form: PrivateMessageForm): APIResponse<PrivateMessageResponse> {
         return HttpAPI.post(Endpoint("/private_message"), form)
     }
 
@@ -21,11 +21,11 @@ object PrivateMessage {
         return HttpAPI.put(Endpoint("/private_message"), form)
     }
 
-    suspend fun delete(form: DeletePrivateMessageForm): PrivateMessageResponse {
+    suspend fun delete(form: DeletePrivateMessageForm): APIResponse<PrivateMessageResponse> {
         return HttpAPI.post(Endpoint("/private_message/delete"), form)
     }
 
-    suspend fun markAsRead(form: MarkPrivateMessageAsReadForm): PrivateMessageResponse {
+    suspend fun markAsRead(form: MarkPrivateMessageAsReadForm): APIResponse<PrivateMessageResponse> {
         return HttpAPI.post(Endpoint("/private_message/mark_as_read"), form)
     }
 }

@@ -5,11 +5,16 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class RemoveCommunityForm(
+data class EditCommunityForm(
     @SerialName("edit_id")
     val communityId: Int,
-    val removed: Boolean,
-    val reason: String?,
-    val expires: Int?,
+    val name: String,
+    val title: String,
+    val description: String?,
+    val icon: String?,
+    val banner: String?,
+    @SerialName("category_id")
+    val categoryId: Int,
+    val nsfw: Boolean,
     override val auth: String,
 ): RequireAuthentication

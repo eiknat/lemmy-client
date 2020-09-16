@@ -17,7 +17,7 @@ data class User(
     val admin: Boolean,
     val banned: Boolean,
     val published: String, // date
-    val updated: String, // also date
+    val updated: String?, // also date
     @SerialName("show_nsfw")
     val showNsfw: Boolean,
     val theme: String,

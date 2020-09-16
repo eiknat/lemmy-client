@@ -3,7 +3,8 @@ package com.eiknat.lemmyclient.api.comment
 import com.eiknat.lemmyclient.api.APIResponse
 import com.eiknat.lemmyclient.api.ListingType
 import com.eiknat.lemmyclient.api.SortType
-import com.eiknat.lemmyclient.api.comment.form.GetCommentsForm
+import com.eiknat.lemmyclient.api.comment.form.*
+import com.eiknat.lemmyclient.api.comment.json.COMMENT_RESPONSE
 import com.eiknat.lemmyclient.api.comment.json.GET_COMMENTS_RESPONSE
 import com.eiknat.lemmyclient.utils.MockClient
 import com.eiknat.lemmyclient.utils.executeTest
@@ -44,4 +45,138 @@ internal class CommentTest {
             }
         }
     }
+
+    @Test
+    fun `create comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment",
+            )
+
+            val form = CreateCommentForm(
+                content = "test comment",
+                creatorId = 1201,
+                parentId = null,
+                postId = 1,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.create(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `delete comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment/delete",
+            )
+
+            val form = DeleteCommentForm(
+                commentId = 5513,
+                deleted = true,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.delete(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `remove comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment/remove",
+            )
+
+            val form = RemoveCommentForm(
+                commentId = 5513,
+                removed = true,
+                reason = "spam",
+                auth = "testauth"
+            )
+
+            when (val res = Comment.remove(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `mark comment as read`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment/mark_as_read",
+            )
+
+            val form = MarkCommentAsReadForm(
+                commentId = 5513,
+                read = false,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.markAsRead(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `like comment`() {
+        executeTest {
+            MockClient(
+                httpMethod = HttpMethod.Post,
+                responseJson = COMMENT_RESPONSE,
+                endpoint = "/comment/like",
+            )
+
+            val form = LikeCommentForm(
+                commentId = 5513,
+                score = 1,
+                auth = "testauth"
+            )
+
+            when (val res = Comment.like(form)) {
+                is APIResponse.Error -> { println("${res.statusCode} :: ${res.message}") ; asserter.fail("should not have failed") }
+                is APIResponse.Ok -> {
+                    val comment = res.data.comment
+                    assertEquals(5513, comment.id)
+                    assertEquals("test comment", comment.content)
+                }
+            }
+        }
+    }
+    
 }

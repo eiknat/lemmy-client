@@ -53,7 +53,8 @@ internal class MockClient(
         assertEquals("$TEST_HOST/api/v1$endpoint$queryParams", request.url.fullUrl)
         assertEquals(httpMethod, request.method, "HttpMethod is set correctly")
         if (httpMethod != HttpMethod.Get) {
-            assertTrue(request.headers.contains("Content-Type", "application/json"), "Request contains application/json content-type header")
+            assertTrue(request.headers.contains("Accept", "application/json"), "Request contains application/json accept header")
+            assertTrue(request.headers.contains("Accept-Charset", "UTF-8"), "Request contains UTF-8 accept-charset header")
         }
     }
 
