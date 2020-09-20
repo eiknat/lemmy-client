@@ -1,3 +1,11 @@
+# Ignore caches and IDE settings
 /build
+build
 .idea
+.eclipse
 .gradle
+
+# These should be downloaded by your IDE
+gradle/wrapper/
+gradlew.bat
+gradlew
